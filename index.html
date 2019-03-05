@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deportista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Enmanuel Martinez">
+
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        display: flex;
+    }
+
+    body {
+        background-color: white;
+        margin: 0px;
+        padding: 0px;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 200px 50px 1fr 100px;
+    }
+
+    a {
+        text-decoration: none;
+        color: rgba(241, 241, 4, 0.863);
+    }
+
+    button {
+        border-color: rgba(241, 241, 4, 0.863);
+    }
+
+    table {
+        background-color: white;
+        padding: 0px;
+        margin: 0px;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        border: solid #150D02;
+        font-family: Georgia, 'Times New Roman', Times, serif
+    }
+
+    tr:nth-child(4) {
+        background: rgba(241, 241, 4, 0.863);
+    }
+
+    tr:nth-child(3) {
+        height: 20px;
+    }
+
+    .tr-texto-plano {
+        height: 10px;
+        font-size: 14px;
+    }
+
+    td {
+        text-align: center;
+        height: 50px;
+        border: 0px;
+        padding: 0px;
+        margin: 0px;
+        transition: 0.2s;
+
+    }
+
+    tr:hover {
+        background-color: rgba(235, 235, 235, 0.863);
+    }
+
+    th {
+        height: 100px;
+        text-align: center;
+        background-color: #150D02;
+        color: yellow;
+    }
+
+    th:before {
+        content: "";
+        height: 100px;
+        width: 100%;
+        background-color: #150D02;
+
+    }
+
+    .navegacion {
+        margin: 0px;
+        border: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: grid;
+        grid-template-columns: 200px repeat(9, 1fr);
+        grid-template-rows: 200px;
+        grid-gap: 0px;
+    }
+
+    .img-titulo {
+        background-color: #FFF746;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 0px;
+    }
+
+    .flag {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 3fr 1fr 1fr;
+    }
+
+    .yellow-flag {
+        background-color: rgba(241, 241, 4, 0.863);
+        border-radius: 10px;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
+        border: 3px currentColor white;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2
+    }
+
+    .blue-flag {
+        background-color: blue;
+        border-radius: 10px;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3
+    }
+
+    .red-flag {
+        background-color: red;
+        border-radius: 10px;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .titulo {
+        border-radius: 0px;
+        border-bottom-left-radius: 0px;
+        background-color: #FFF746;
+        background-image: url("https://s3-eu-west-1.amazonaws.com/rb-cms/rbv5/production/uploads/cover_images/b70263f96fdf344d5e6bc9e38b9fe84d4a56/i1080x475.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-blend-mode: multiply;
+        grid-column-start: 2;
+        grid-column-end: 11;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 100px 100px;
+    }
+
+    .texto {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: x-large;
+        text-shadow: 2px 0 0 rgba(241, 241, 4, 0.863), -2px 0 0 rgba(241, 241, 4, 0.863),
+            0 2px 0 rgba(241, 241, 4, 0.863), 0 -2px 0 rgba(241, 241, 4, 0.863),
+            1px 1px rgba(241, 241, 4, 0.863), -1px -1px 0 rgba(241, 241, 4, 0.863),
+            1px -1px 0 rgba(241, 241, 4, 0.863), -1px 1px 0 rgba(241, 241, 4, 0.863);
+        grid-column-start: 1;
+        grid-column-end: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enlaces {
+        color: rgba(241, 241, 4, 0.863);
+        transition: 0.2s;
+        transform: translateY(20px) translateX(-20px);
+        grid-column-start: 2;
+        grid-column-end: 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 10fr;
+        grid-gap: 10px;
+    }
+
+    .enlaces:hover .enlace {
+        transform: scale(1.2);
+        filter: blur(5px);
+    }
+
+    #link1 {
+        text-align: center;
+        border-radius: 30px;
+        background-color: #150D02;
+        transition: 0.2s;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    #link2 {
+        text-align: center;
+        border-radius: 30px;
+        background-color: #150D02;
+        text-decoration-color: blue;
+        transition: 0.2s;
+        grid-column-start: 2;
+        grid-column-end: 3;
+    }
+
+    #link1:hover,
+    #link2:hover {
+        filter: blur(0px);
+        transform: scale(1.3);
+    }
+
+    .seccion1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .contenido {
+        margin: 50px;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        display: grid;
+    }
+
+    .enunciado-article {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 20px;
+        background: rgba(241, 241, 4, 0.863);
+        padding: 20px;
+        border-radius: 80px;
+        border-bottom-left-radius: 0px;
+        width: 50%;
+    }
+
+    ul {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    ul:hover li {
+        filter: blur(5px);
+    }
+
+    ul li:active {
+        filter: blur(0px);
+        transform: scale(1.5);
+        border-bottom-style: solid;
+    }
+
+    li {
+        border-bottom: 5px hidden;
+        border-color: #150D02;
+        transition: 0.3s;
+    }
+
+    ul li:hover {
+        filter: blur(0px);
+        transform: scale(1.5);
+        border-bottom-style: solid;
+    }
+
+    .lista-departamentos ul li a {
+        color: black;
+    }
+
+    .jugadores-departamento {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-gap: 10px;
+    }
+
+    @media (max-width: 878px) {
+        .jugadores-departamento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 10px;
+
+        }
+    }
+
+    @media (max-width: 623px) {
+        .jugadores-departamento {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            grid-gap: 10px;
+
+        }
+    }
+
+    #img-jugador {
+        background-color: yellow;
+        background-image: url("http://st.gde-fon.com/wallpapers_original/109859_tekstura_kist_razvody_kraska_shum_2560x1600_www.Gde-Fon.com.jpg");
+        background-size: cover;
+        background-blend-mode: exclusion;
+    }
+
+    .autor {
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+    }
+
+    footer {
+        background: rgb(27, 27, 27);
+        margin: 0px;
+        padding: 0px;
+        height: 110px;
+        grid-column: 1/3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-self: flex-end;
+    }
+</style>
+
+<body>
+
+    <nav class="navegacion">
+        <div class="img-titulo">
+            <img src="https://www.shareicon.net/download/2016/04/20/752806_select_512x512.png" alt="Una imagen"
+                width="100%" height="100%">
+        </div>
+        <div class="titulo">
+            <div class="texto">
+                <h3>Deportistas famosos
+                    colombianos</h3>
+            </div>
+            <div class="enlaces">
+                <br><br>
+                <button class="enlace" id="link1">
+                    <a href="https://es.fifa.com/associations/association/col/">Fifa <br> Colombia</a>
+                </button>
+                <button class="enlace" id="link2"><a href="https://www.adidas.co/colombia">Mercancía</a> </button>
+            </div>
+
+        </div>
+    </nav>
+    <div class="flag">
+        <div class="yellow-flag"></div>
+        <div class="blue-flag"></div>
+        <div class="red-flag"></div>
+    </div>
+    <br>
+    <div class="seccion1">
+        <div class="contenido">
+            <div class="enunciado-article">Lista de deportistas por año de nacimiento</div>
+            <div class="lista-departamentos">
+                <ul>
+                    <li><a href="#jugador" onclick="pintarDep1();">dep 1</a>></li>
+                    <li><a href="#jugador" onclick="pintarDep2();">dep 2</a>></li>
+                    <li><a href="#jugador" onclick="pintarDep3();">dep 3</a>></li>
+                    <li><a href="#jugador" onclick="pintarDep4();">dep 4</a>></li>
+                </ul>
+            </div>
+            <div class="jugadores-departamento" id="jugador">
+                <table>
+                    <tr>
+                        <th colspan="2">Nombre: <div id="table-nombre-jugador">.</div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Fecha Nacimiento:</td>
+                        <td id="table-nacimiento-jugador">aaaammdd</td>
+                    </tr>
+                    <tr>
+                        <td>Lugar de Nacimiento:</td>
+                        <td id="table-lugar-nacimiento-jugador"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Premios Ganados</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Descripción</td>
+                    </tr>
+                    <tr height="100">
+                        <td id="img-jugador" colspan="2"><img
+                                src="http://www.corrieregiallorosso.com/wp-content/uploads/2014/07/James-Rodriguez.jpg"
+                                alt="Una fotografía de James" width="250" height="200"></td>
+                    </tr>
+                    <tr height="100">
+                        <td colspan="2"><iframe width="100%" height="200"
+                                src="https://www.youtube.com/embed/8IA-4v2wLJo" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer>
+    <div class="autor">Realizado por: Enmanuel Martínez <br>Código:1151512</div>
+    <div class="img-autor"><img src="https://www.shareicon.net/download/2016/04/20/752806_select_512x512.png"
+            alt="Imagen del autor" width="100" height="100"></div>
+    <script>
+        /*Jugadores*/
+        const player_james = {
+            nombre: "James Rodríguez", fecha_nacimiento: "1991-07-12", lugar_nacimiento: "Cúcuta",
+            premios_ganados: [{ fecha: "2015", descripcion: "Premio Puskás" }, { fecha: "2017, 2015", descripcion: "Kids' Choice Award Colombia al Atleta Favorito" }],
+            link_imagen: "http://www.corrieregiallorosso.com/wp-content/uploads/2014/07/James-Rodriguez.jpg",
+            link_video: "https://www.youtube.com/embed/8IA-4v2wLJo"
+        };
+        const player_mariana = {
+            nombre: "Mariana Pajón", fecha_nacimiento: "1991-10-10", lugar_nacimiento: "Medellín",
+            premios_ganados: [{ fecha: "2016", descripcion: "BMX femenino Juegos Olímpicos Río de Janeiro" },
+            { fecha: "2012", descripcion: "BMX femenino Juegos Olímpicos Lóndres" }],
+            link_imagen: "https://pbs.twimg.com/profile_images/950070429250703360/jWtzKC92_400x400.jpg",
+            link_video: "https://www.youtube.com/embed/8IA-4v2wLJo"
+        };
+        const player_nairo = {
+            nombre: "Nairo Quintana", fecha_nacimiento: "1990-02-04", lugar_nacimiento: "Cómbita",
+            premios_ganados: [{ fecha: "2010", descripcion: "Ganador de la séptima etapa del Tour del Porvenir" },
+            { fecha: "2010", descripcion: "Ganador de la etapa 8 del Tour de l’Avenir" },
+            { fecha: "2010", descripcion: "Campeón del Tour de l’Avenir" }],
+            link_imagen: "https://www.elcolombiano.com/documents/10157/0/580x387/0c0/580d365/none/11101/LAGU/image_content_31649874_20180820095117.jpg",
+            link_video: "https://www.youtube.com/embed/8IA-4v2wLJo"
+        };
+        const player_caterine = {
+            nombre: "Caterine Ibargüen", fecha_nacimiento: "1984-02-12", lugar_nacimiento: "Apartadó",
+            premios_ganados: [{ fecha: "2010", descripcion: "Medalla Plata salto alto Juegos Olímpicos Londres" },
+            { fecha: "2013", descripcion: "Ganadora Salto Alto Campeonato Mundial de Moscú" },
+            { fecha: "2016", descripcion: "Medalla Oro salto alto Juegos Olímpicos Río de Janeiro" }],
+            link_imagen: "http://caracol.com.co/radio/imagenes/2018/12/03/deportes/1543839654_402914_1543839808_noticia_normal.jpg",
+            link_video: "https://www.youtube.com/embed/8IA-4v2wLJo"
+        };
+
+        /*Departamentos*/
+        const dep1 = [player_james, player_caterine, player_nairo];
+        const dep2 = [player_nairo, player_mariana];
+        const dep3 = [player_mariana, player_james, player_caterine];
+        const dep4 = [player_caterine, player_mariana, player_caterine];
+
+        /*Funciones*/
+        function pintarDep(dep) {
+            var tabla = "";
+            //Ordenar jugadores del departamento por su edad
+            var depOrdenado = dep.sort(function (a, b) {
+                if (calcularEdad(a.fecha_nacimiento) < calcularEdad(b.fecha_nacimiento)) {
+                    return -1;
+                }
+                if (calcularEdad(a.fecha_nacimiento) > calcularEdad(b.fecha_nacimiento)) {
+                    return 1;
+                }
+                return 0;
+            });
+            //Obtener la tabla de cada jugador
+            depOrdenado.map(function (jugador) {
+                tabla += getTabla(jugador);
+            });
+            document.getElementsByClassName("jugadores-departamento")[0].innerHTML = tabla;
+        }
+        function pintarDep1() {
+            pintarDep(dep1);
+        }
+        function pintarDep2() {
+            pintarDep(dep2);
+        }
+        function pintarDep3() {
+            pintarDep(dep3);
+        }
+        function pintarDep4() {
+            pintarDep(dep4);
+        }
+
+        function getTabla(jugador) {
+            var tabla = "<table><tr>";
+            tabla += "<th colspan='2'>Nombre: " + jugador.nombre + ".</div>";
+            tabla += "</th>";
+            tabla += "  </tr >";
+            tabla += " <tr class='tr-texto-plano'>";
+            tabla += "      <td>Fecha Nacimiento:</td>";
+            tabla += "      <td >" + jugador.fecha_nacimiento + " (" + calcularEdad(jugador.fecha_nacimiento) + " años)</td>";
+            tabla += "  </tr>";
+            tabla += "  <tr class='tr-texto-plano'>";
+            tabla += "   <td>Lugar de Nacimiento:</td>";
+            tabla += "      <td >" + jugador.lugar_nacimiento + "</td>";
+            tabla += "  </tr>";
+            tabla += "  <tr>";
+            tabla += "      <td colspan='2'><h3>Premios Ganados</h3></td>";
+            tabla += "  </tr>";
+            tabla += "  <tr class='tr-texto-plano'>";
+            tabla += "      <td><h3>Fecha</h3></td>";
+            tabla += "      <td><h3>Descripción</h3></td>";
+            tabla += " </tr>";
+            jugador.premios_ganados.map
+                (function (premio) {
+                    tabla += "<tr class='tr-texto-plano'><td>" + premio.fecha.toString() + "</td><td>" + premio.descripcion.toString() + "</td></tr>";
+                });
+            tabla += "<tr height='200'><td id='img-jugador' colspan='2'><img src='" + jugador.link_imagen + "' title='" + jugador.nombre + "' width='250' height='200'></td> </tr>";
+            tabla += "   <tr height='100'><td colspan='2' ><iframe width='100%' height='200' src='" + jugador.link_video + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></td> </tr> </table> ";
+            return tabla;
+        }
+
+        function calcularEdad(fecha) {
+            var hoy = new Date();
+            var nacimiento = new Date(fecha);
+            var edad = hoy.getFullYear() - nacimiento.getFullYear();
+            var m = hoy.getMonth() - nacimiento.getMonth();
+
+            if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+            return edad;
+        }
+        pintarDep1();
+    </script>
+</footer>
+
+</html>
